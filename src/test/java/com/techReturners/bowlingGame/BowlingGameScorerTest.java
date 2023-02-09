@@ -41,5 +41,11 @@ public class BowlingGameScorerTest {
 		BowlingGameScorer bowlingGameScorer = new BowlingGameScorer();
 		assertEquals(20, bowlingGameScorer.scoreCalculator("11 11 11 11 11 11 11 11 11 11" ));
 	}
+	
+	@Test
+	public void TestFramesHavingDifferentScoresWithNoZerosStrikesAndSpares(){
+		BowlingGameScorer bowlingGameScorer = new BowlingGameScorer();
+		assertEquals(75, bowlingGameScorer.scoreCalculator("21 35 53 45 81 24 54 43 62 17" ));
+	}
 
 }
