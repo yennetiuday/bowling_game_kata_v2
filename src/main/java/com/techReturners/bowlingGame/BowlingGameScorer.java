@@ -2,26 +2,30 @@ package com.techReturners.bowlingGame;
 
 public class BowlingGameScorer {
 	
-	private static final String SCORE_ZERO = "-";
-	private static final String SCORE_STRIKE = "X";
-	private static final String SCORE_SPARE = "/";
+	private static final String ZERO = "-";
+	private static final String STRIKE = "X";
+	private static final String SPARE = "/";
 
 	
 	
-	public int scoreCalculator(String frameScore) {
+	public int scoreCalculator(String scoreBoard) {
 		int score = 0;
-		if(frameScoreZero(frameScore)) {
-			score = 0;
-		} else if (frameScore.contains(SCORE_STRIKE)) {
-			score = 10;
-		} else if (frameScore.contains(SCORE_SPARE)) {
-			score = 10;
+		String[] frames = scoreBoard.split(" ");
+		
+		for (String frame : frames) {
+			if(frameScoreZero(frame)) {
+				score += 0;
+			} else if (frame.startsWith(STRIKE)) {
+				score += 10;
+			} else if (frame.endsWith(SPARE)) {
+				score += 10;
+			}
 		}
 		return score;
 	}
 
 	private boolean frameScoreZero(String frameScore) {
-		return frameScore.startsWith(SCORE_ZERO) && frameScore.endsWith(SCORE_ZERO);
+		return frameScore.startsWith(ZERO) && frameScore.endsWith(ZERO);
 	}
 
 }
