@@ -14,7 +14,10 @@ public class BowlingGameScorer {
 		int score = 0;
 		int currentRoll = 0;
 		for(int currentFrame = 0; currentFrame<10; currentFrame++) {
-			if (isSpare(currentRoll)) {
+			if (isStrike(currentRoll)) {
+				score += getStrikeScore(currentRoll);
+				currentRoll++;
+			} else if (isSpare(currentRoll)) {
 				score += getSpareScore(currentRoll);
 				currentRoll += 2;
 			} else {
@@ -29,24 +32,38 @@ public class BowlingGameScorer {
 		String[] frames = scoreBoard.split(" ");
 		for (int frame =0; frame<frames.length; frame++) {
 			if(frameScoreZero(frames[frame])) {
-				rolls[roll++] = 0;
-				rolls[roll++] = 0;
+				addScoreToRolls(0);
+				addScoreToRolls(0);
 			} else if (frames[frame].contains("-")) {
 				String[] frameRolls = frames[frame].split("");
-				rolls[roll++] = frameRolls[0].equals(ZERO)? 0: Integer.valueOf(frameRolls[0]);
-				rolls[roll++] = frameRolls[1].equals(ZERO)? 0: Integer.valueOf(frameRolls[1]);
+				for (String score : frameRolls) {
+					addScoreToRolls(score.equals(ZERO)? 0: Integer.valueOf(score));
+				}
 			} else if (frames[frame].startsWith(STRIKE)) {
-				rolls[roll++] = 10;
+				addScoreToRolls(10);
 			} else if (frames[frame].endsWith(SPARE)) {
 				String[] frameRolls = frames[frame].split("");
-				rolls[roll++] = Integer.valueOf(frameRolls[0]);
-				rolls[roll++] = 10 - Integer.valueOf(frameRolls[0]);
+				addScoreToRolls(Integer.valueOf(frameRolls[0]));
+				addScoreToRolls(10 - Integer.valueOf(frameRolls[0]));
 			} else {
 				String[] frameRolls = frames[frame].split("");
-				rolls[roll++] = Integer.valueOf(frameRolls[0]);
-				rolls[roll++] = Integer.valueOf(frameRolls[1]);
+				for (String score : frameRolls) {
+					addScoreToRolls(Integer.valueOf(score));
+				}
 			}
 		}
+	}
+
+	private void addScoreToRolls(int score) {
+		rolls[roll++] = score;
+	}
+	
+	private boolean isStrike(int currentRoll) {
+		return rolls[currentRoll] == 10;
+	}
+
+	private int getStrikeScore(int currentRoll) {
+		return 10 + rolls[currentRoll+1] + rolls[currentRoll+2];
 	}
 
 	private boolean frameScoreZero(String frameScore) {

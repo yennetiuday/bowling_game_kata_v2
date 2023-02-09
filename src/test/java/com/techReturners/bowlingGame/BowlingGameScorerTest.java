@@ -53,5 +53,10 @@ public class BowlingGameScorerTest {
 	public void testFramesHavingFirstFrameSpareAndSecondFrameFirstValueFour(){
 		assertEquals(16, bowlingGameScorer.scoreCalculator("4/ 3- -- -- -- -- -- -- -- --" ));
 	}
+	
+	@Test
+	public void testFirstFrameStrikeFollowedByThreeAndSix() {
+		assertEquals(28, bowlingGameScorer.scoreCalculator("X 36 -- -- -- -- -- -- -- --" ));
+	}
 
 }
