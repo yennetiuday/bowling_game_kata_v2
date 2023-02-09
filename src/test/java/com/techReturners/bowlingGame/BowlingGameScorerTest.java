@@ -48,5 +48,25 @@ public class BowlingGameScorerTest {
 	public void testAllStrikes() {
 		assertEquals(300, bowlingGameScorer.scoreCalculator("X X X X X X X X X XXX" ));
 	}
+	
+	@Test
+	public void testAllStrikesButLastRollZero() {
+		assertEquals(290, bowlingGameScorer.scoreCalculator("X X X X X X X X X XX-" ));
+	}
+	
+	@Test
+	public void testAllSpareswithFirstRollFiveAndSecondRollFiveAndLastRollFive() {
+		assertEquals(150, bowlingGameScorer.scoreCalculator("5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5" ));
+	}
+	
+	@Test
+	public void testAllSpareswithFirstRollFiveAndSecondRollFiveAndLastRollStrike() {
+		assertEquals(155, bowlingGameScorer.scoreCalculator("5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/X" ));
+	}
+	
+	@Test
+	public void testAllFramesZeroButLastFrameAllStrikes() {
+		assertEquals(30, bowlingGameScorer.scoreCalculator("-- -- -- -- -- -- -- -- -- XXX" ));
+	}
 
 }

@@ -61,7 +61,13 @@ public class BowlingGameScorer {
 			if(lastFrameScoreBoard.contains(SPARE)) {
 				addScoreToRolls(Integer.valueOf(lastFrameScores[0]));
 				addScoreToRolls(MAX_SCORE -Integer.valueOf(lastFrameScores[0]));
-				addScoreToRolls(lastFrameScores[2].equals(ZERO)? MIN_SCORE: Integer.valueOf(lastFrameScores[2]));
+				if(lastFrameScores[2].equals(ZERO)) {
+					addScoreToRolls(MIN_SCORE);
+				} else if(lastFrameScores[2].equals(STRIKE)) {
+					addScoreToRolls(MAX_SCORE);
+				} else {
+					addScoreToRolls(Integer.valueOf(lastFrameScores[2]));
+				}
 			} else {
 				for (String score : lastFrameScores) {
 					if(score.equals(STRIKE))
