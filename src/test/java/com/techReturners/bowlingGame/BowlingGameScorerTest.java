@@ -1,5 +1,7 @@
 package com.techReturners.bowlingGame;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 public class BowlingGameScorerTest {
@@ -7,7 +9,7 @@ public class BowlingGameScorerTest {
 	@Test
 	public void TestScoreContainsZero(){
 		BowlingGameScorer bowlingGameScorer = new BowlingGameScorer();
-		bowlingGameScorer.scoreCalculator("-");
+		assertEquals(0, bowlingGameScorer.scoreCalculator("-"));
 	}
 
 }
