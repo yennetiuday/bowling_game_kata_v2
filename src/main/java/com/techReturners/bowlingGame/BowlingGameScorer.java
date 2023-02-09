@@ -6,12 +6,15 @@ public class BowlingGameScorer {
 	
 	private static final String SCORE_ZERO = "-";
 	private static final String SCORE_STRIKE = "X";
+	private static final String SCORE_SPARE = "/";
 
 	public int scoreCalculator(String score) {
-		if(score.equals(SCORE_ZERO))
-			totalScore += 0;
+		if(score.contains(SCORE_ZERO))
+			totalScore = 0;
 		else if (score.contains(SCORE_STRIKE)) {
-			totalScore += 10;
+			totalScore = 10;
+		} else if (score.contains(SCORE_SPARE)) {
+			totalScore = 10;
 		}
 		
 		return totalScore;
