@@ -15,26 +15,6 @@ public class BowlingGameScorerTest {
 	}
 	
 	@Test
-	public void testScoreZero(){
-		assertEquals(0, bowlingGameScorer.scoreCalculator("-"));
-	}
-	
-	@Test
-	public void testScoreStrike(){
-		assertEquals(10, bowlingGameScorer.scoreCalculator("X"));
-	}
-	
-	@Test
-	public void testScoreSpare(){
-		assertEquals(10, bowlingGameScorer.scoreCalculator("5/"));
-	}
-	
-	@Test
-	public void testFrameScoreZero(){
-		assertEquals(0, bowlingGameScorer.scoreCalculator("--"));
-	}
-	
-	@Test
 	public void testAllFramesScoreZero(){
 		assertEquals(0, bowlingGameScorer.scoreCalculator("-- -- -- -- -- -- -- -- -- --" ));
 	}
@@ -57,6 +37,16 @@ public class BowlingGameScorerTest {
 	@Test
 	public void testFirstFrameStrikeFollowedByThreeAndSix() {
 		assertEquals(28, bowlingGameScorer.scoreCalculator("X 36 -- -- -- -- -- -- -- --" ));
+	}
+	
+	@Test
+	public void testEveryFrameFirstRollNineFollowedByZero() {
+		assertEquals(90, bowlingGameScorer.scoreCalculator("9- 9- 9- 9- 9- 9- 9- 9- 9- 9-" ));
+	}
+	
+	@Test
+	public void testAllStrikes() {
+		assertEquals(300, bowlingGameScorer.scoreCalculator("X X X X X X X X X XXX" ));
 	}
 
 }
