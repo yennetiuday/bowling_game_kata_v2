@@ -35,5 +35,11 @@ public class BowlingGameScorerTest {
 		BowlingGameScorer bowlingGameScorer = new BowlingGameScorer();
 		assertEquals(0, bowlingGameScorer.scoreCalculator("-- -- -- -- -- -- -- -- -- --" ));
 	}
+	
+	@Test
+	public void TestAllFramesScoreOnes(){
+		BowlingGameScorer bowlingGameScorer = new BowlingGameScorer();
+		assertEquals(20, bowlingGameScorer.scoreCalculator("11 11 11 11 11 11 11 11 11 11" ));
+	}
 
 }

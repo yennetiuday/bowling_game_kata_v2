@@ -1,24 +1,24 @@
 package com.techReturners.bowlingGame;
 
 public class BowlingGameScorer {
-	
+			
 	private static final String ZERO = "-";
 	private static final String STRIKE = "X";
 	private static final String SPARE = "/";
-
-	
 	
 	public int scoreCalculator(String scoreBoard) {
 		int score = 0;
 		String[] frames = scoreBoard.split(" ");
-		
-		for (String frame : frames) {
-			if(frameScoreZero(frame)) {
+		for (int frame =0; frame<frames.length; frame++) {
+			if(frameScoreZero(frames[frame])) {
 				score += 0;
-			} else if (frame.startsWith(STRIKE)) {
+			} else if (frames[frame].startsWith(STRIKE)) {
 				score += 10;
-			} else if (frame.endsWith(SPARE)) {
+			} else if (frames[frame].endsWith(SPARE)) {
 				score += 10;
+			} else {
+				String[] rolls = frames[frame].split("");
+				score += Integer.valueOf(rolls[0]) + Integer.valueOf(rolls[1]);
 			}
 		}
 		return score;
